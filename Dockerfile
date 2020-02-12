@@ -1,12 +1,12 @@
-### Kibana does not support the current Node.js version v10.15.3. Please use Node.js v10.15.2.
-FROM node:10.15.2-alpine
+### Kibana does not support the current Node.js version v10.15.2. Please use Node.js v10.18.0.
+FROM node:10.18.0-alpine3.11
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
 ARG KIBANA_VERSION=7.6.0
 ARG TARBALL_ASC="https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz.asc"
-### https://artifacts.elastic.co/downloads/kibana/kibana-7.5.2-linux-x86_64.tar.gz.sha512
+### https://artifacts.elastic.co/downloads/kibana/kibana-7.6.0-linux-x86_64.tar.gz.sha512
 ARG TARBALL_SHA="296416b9697ae66b20aae37ada855d7212fc5151055a35cc81e7c3cfef589758f10f600b382e9f4b419fcd327ff605d8da23a25e867f6a1e4d3bd133e0317b72"
 ARG GPG_KEY="46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
@@ -41,8 +41,8 @@ RUN apk add --no-cache bash su-exec ;\
     apk del --purge .build-deps ;\
     rm -rf /tmp/* /var/cache/apk/*
 
-# Fixing CVE-2019-xxxx
-RUN apk add --upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl binutils nghttp2 cyrus-sasl musl=1.1.19-r11
+# Fixing CVE-2019-1551
+RUN apk add --upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl
 
 ADD data/ /
 
