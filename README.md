@@ -6,7 +6,7 @@ Kibana, image is based on the Alpine base image with 0 vulnerabilities.
 
 Security scanning using Clair
 ```
-clair-scanner secureimages/kibana:7.6.1-alpine-3.11.2
+clair-scanner secureimages/kibana:7.6.1-alpine-3.11.3
 2020/03/05 21:38:36 [INFO] ▶ Start clair-scanner
 2020/03/05 21:38:58 [INFO] ▶ Server listening on port 9279
 2020/03/05 21:38:58 [INFO] ▶ Analyzing c60e0e5e0b8cce2c353f5af4186afb2cde56680bc78ff165fd2368a003530178
@@ -22,14 +22,14 @@ clair-scanner secureimages/kibana:7.6.1-alpine-3.11.2
 
 Security scanning using Trivy
 ```
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.0 --no-progress secureimages/kibana:7.6.1-alpine-3.11.2
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock:ro aquasec/trivy:0.5.0 --no-progress secureimages/kibana:7.6.1-alpine-3.11.3
 2020-03-05T19:39:08.295Z        INFO    Need to update DB
 2020-03-05T19:39:08.295Z        INFO    Downloading DB...
 2020-03-05T19:39:12.606Z        INFO    Reopening DB...
 2020-03-05T19:39:42.667Z        INFO    Detecting Alpine vulnerabilities...
 2020-03-05T19:39:42.668Z        INFO    Detecting yarn vulnerabilities...
 
-secureimages/kibana:7.6.1-alpine-3.11.2 (alpine 3.11.3)
+secureimages/kibana:7.6.1-alpine-3.11.3 (alpine 3.11.3)
 =======================================================
 Total: 0 (UNKNOWN: 0, LOW: 0, MEDIUM: 0, HIGH: 0, CRITICAL: 0)
 
