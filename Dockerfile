@@ -1,13 +1,13 @@
-### Kibana does not support the current Node.js version v10.18.0. Please use Node.js v10.19.0.
+### Kibana does not support the current Node.js version v10.20.1. Please use Node.js v10.19.0.
 FROM node:10.19.0-alpine3.11
 LABEL website="Secure Docker Images https://secureimages.dev"
 LABEL description="We secure your business from scratch."
 LABEL maintainer="hireus@secureimages.dev"
 
-ARG KIBANA_VERSION=7.6.2
+ARG KIBANA_VERSION=7.7.0
 ARG TARBALL_ASC="https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz.asc"
-### https://artifacts.elastic.co/downloads/kibana/kibana-7.6.2-linux-x86_64.tar.gz.sha512
-ARG TARBALL_SHA="5a7187f7fd1af3d4009053b904948fca08e171ea5eea36f8120019721d84b1649bdaf1bc606577ebad179bd4d24b014a1733c8221f67b1b7da2c756c68819311"
+### https://artifacts.elastic.co/downloads/kibana/kibana-7.7.0-linux-x86_64.tar.gz.sha512
+ARG TARBALL_SHA="ea6e7ca12c43be627c54691e365827a2e42458ab443dedeb948a2aa2e63d1506859554a0eaef4ccdb9c03de836d4f2b4afda7daf25a826748351df2d15309b8b"
 ARG GPG_KEY="46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH=/usr/share/kibana/bin:$PATH
@@ -41,8 +41,9 @@ RUN apk add --no-cache bash su-exec ;\
     apk del --purge .build-deps ;\
     rm -rf /tmp/* /var/cache/apk/*
 
-# Fixing CVE-2019-1551
-RUN apk add --upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl
+# Fixing CVE-2020-1967
+RUN apk add --upgrade --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main openssl ;\
+    rm -rf /tmp/* /var/cache/apk/*
 
 ADD data/ /
 
